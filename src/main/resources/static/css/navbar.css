@@ -1,0 +1,33 @@
+
+.navbar {
+    height: 10vh;
+    width: 100vw;
+    font-size: 1.3em;
+    background: rgba(0, 0, 0, .2);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: row;
+}
+.left {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.right {
+
+}
+a{
+    text-decoration: none;
+    color: #fff;
+}
+.nav-link {
+    color: #fff;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+.nav-link:hover {
+    background: rgba(0, 0, 0, .4);
+    backdrop-filter: blur(10px);
+}

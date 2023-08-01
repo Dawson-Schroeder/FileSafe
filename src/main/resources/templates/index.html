@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
+<head th:insert="~{partials/head :: head ('Home Page')}"></head>
 <body>
-<h1>Hello!</h1>
+<div class="page-wrapper">
+    <nav th:insert="~{partials/navbar :: navbar}"></nav>
+    <div class="container">
+        <div class="banner">
+            <h1>Secure Document Storage</h1>
+        </div>
+    </div>
+</div>
+<div th:insert="~{partials/footer :: footer}"></div>
 </body>
 </html>

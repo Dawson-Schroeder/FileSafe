@@ -1,0 +1,24 @@
+
+:root {
+
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    background: #333333;
+    color: white;
+}
+.page-wrapper{
+
+}
+
+
+
+/*Index CSS*/
+
+.banner {
+    width: 100vw;
+    height: 50vh;
+    background-color: darkseagreen;
+}
