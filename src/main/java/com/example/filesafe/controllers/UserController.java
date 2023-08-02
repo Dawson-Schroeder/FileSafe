@@ -4,13 +4,16 @@ import com.example.filesafe.models.User;
 import com.example.filesafe.repositories.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-@RestController
+import java.util.List;
+
+@Controller
 public class UserController {
     private final UserRepository usersDao;
     private final PasswordEncoder passwordEncoder;
@@ -26,9 +29,9 @@ public class UserController {
         return "index";
     }
 
-    @GetMapping("register")
+    @GetMapping("/register")
     public String showRegistrationForm(){
-        return "/register";
+        return "register";
     }
 
     @PostMapping("/register")
@@ -38,10 +41,10 @@ public class UserController {
                                @RequestParam(name = "passwordConfirmation") String passwordConfirm,
                                RedirectAttributes redirectAttributes,
                                HttpServletRequest request) {
-        User exsistingUser = usersDao.findUserByUsername(username);
-        User exsistingEmail = usersDao.findUserByEmail(email);
+        User existingUser = usersDao.findUserByUsername(username);
+        User existingEmail = usersDao.findUserByEmail(email);
 
-        if (exsistingUser != null || exsistingEmail != null) {
+        if (existingUser != null || existingEmail != null) {
             redirectAttributes.addAttribute("userExists", true);
             return "redirect:/register?error";
         }
@@ -54,4 +57,20 @@ public class UserController {
             return "redirect:/register?error";
         }
     }
+
+    @GetMapping("/login")
+    public String showLoginForm(@RequestParam(value = "error", required = false) String error, Model model) {
+        if (error != null) {
+            model.addAttribute("loginError", true);
+        }
+        return "login";
+    }
+    @PostMapping("/login")
+    public String login() {
+        return "redirect:/profile";
+    }
+
+
+
+//    END
 }
