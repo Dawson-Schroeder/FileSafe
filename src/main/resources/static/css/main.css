@@ -12,6 +12,9 @@ body {
 .page-wrapper{
 
 }
+.hidden {
+    display: none;
+}
 
 
 

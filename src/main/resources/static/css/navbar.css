@@ -19,15 +19,20 @@
 a{
     text-decoration: none;
     color: #fff;
+    cursor: pointer;
 }
 .nav-link {
     color: #fff;
     height: 10vh;
     display: flex;
     align-items: center;
-    padding: 5px;
+    padding: 10px;
 }
 .nav-link:hover {
     background: rgba(0, 0, 0, .4);
     backdrop-filter: blur(10px);
+}
+.nav-ul {
+    display: flex;
+    flex-direction: row;
 }
