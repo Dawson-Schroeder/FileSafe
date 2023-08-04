@@ -5,9 +5,38 @@
 <div class="page-wrapper">
   <nav th:insert="~{partials/navbar :: navbar}"></nav>
   <div class="container">
-    <h1>Register page</h1>
+    <div class="register-form">
+      <h1>Register Here!</h1>
+      <form th:action="@{/register}" th:method="post">
+        <input class="row" type="text" id="username" name="username" placeholder="Username" required>
+        <input class="row" type="email" id="email" name="email" placeholder="Email" required>
+        <input class="row" type="password" id="password" name="password" onkeyup="passConfirm()" placeholder="Password" required>
+        <input class="row" type="password" id="passwordConfirmation" name="passwordConfirmation" onkeyup="passConfirm()" placeholder="Confirm Password" required>
+        <input class="row" type="submit" value="Sign Up">
+        <div class="row">
+          <a th:href="@{/login}">Already Registered? Login Here</a>
+        </div>
+        <div class="row" id="message"></div>
+      </form>
+    </div>
   </div>
 </div>
 <div th:insert="~{partials/footer :: footer}"></div>
+<script>
+  function passConfirm() {
+    let password = document.getElementById(`password`).value;
+    let confirmPassword = document.getElementById(`passwordConfirmation`).value;
+    let message = document.getElementById(`message`);
+    if (password === confirmPassword) {
+      message.style.color = `green`;
+      message.innerHTML = `Passwords match.`
+    } else {
+      message.style.color = `red`;
+      message.innerHTML = `Passwords do not match.`
+    }
+    document.getElementById(`password`).onkeyup = passConfirm;
+    document.getElementById(`confirm_password`).onkeyup = passConfirm;
+  }
+</script>
 </body>
 </html>
