@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="~{partials/head :: head ('Profile')}"></head>
+<body>
+<div class="page-wrapper">
+  <nav th:insert="~{partials/navbar :: navbar}"></nav>
+  <h1>Profile Page</h1>
+  <p class="row" sec:authorize="isAuthenticated()">Welcome, @<strong th:text="${#authentication.name}"></strong></p>
+</div>
+<div th:insert="~{partials/footer :: footer}"></div>
+</body>
+</html>

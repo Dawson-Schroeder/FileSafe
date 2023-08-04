@@ -24,12 +24,11 @@ public class User {
     @Column
     private String profileImage;
 
-    public User(long id, String email, String username, String password, String profileImage) {
+    public User(long id, String email, String username, String password) {
         this.id = id;
         this.email = email;
         this.username = username;
         this.password = password;
-        this.profileImage = profileImage;
     }
 
     public User(String email, String username, String password) {
@@ -40,6 +39,7 @@ public class User {
 
     public User() {
     }
+
 
     public long getId() {
         return id;

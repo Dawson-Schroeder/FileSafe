@@ -3,6 +3,7 @@ package com.example.filesafe.controllers;
 import com.example.filesafe.models.User;
 import com.example.filesafe.repositories.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -70,6 +71,15 @@ public class UserController {
         return "redirect:/profile";
     }
 
+    @GetMapping("/profile")
+    public String showProfile(Model model) throws Exception{
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long userId = user.getId();
+        user = usersDao.findUserById(userId);
+        model.addAttribute("user", user);
+        model.addAttribute("id", userId);
+        return "profile";
+    }
 
 
 //    END
