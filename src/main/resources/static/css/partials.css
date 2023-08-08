@@ -1,4 +1,5 @@
 
+/*NAVBAR START*/
 .navbar {
     height: 10vh;
     width: 100vw;
@@ -36,3 +37,14 @@ a{
     display: flex;
     flex-direction: row;
 }
+/*NAVBAR END*/
+
+/*FOOTER START*/
+footer {
+    width: 100vw;
+    height:30vh;
+    background-color: #292929;
+    color: white;
+
+}
+/*FOOTER END*/
