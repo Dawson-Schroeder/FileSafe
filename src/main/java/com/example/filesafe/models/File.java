@@ -12,26 +12,30 @@ public class File {
     private long id;
 
     @Column(nullable = false)
-    private String fileTitle;
+    private String fileName;
 
     @Column(nullable = false)
-    private String category;
+    private String fileType;
+
+    @Lob
+    @Column(nullable = false)
+    private byte[] data;
 
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "folder_id")
     private Folder folder;
 
-    public File(long id, String fileTitle, String category, Folder folder) {
-        this.id = id;
-        this.fileTitle = fileTitle;
-        this.category = category;
-        this.folder = folder;
-    }
-
     public File() {
     }
 
+    public File(long id, String fileName, String fileType, byte[] data, Folder folder) {
+        this.id = id;
+        this.fileName = fileName;
+        this.fileType = fileType;
+        this.data = data;
+        this.folder = folder;
+    }
 
     public long getId() {
         return id;
@@ -41,20 +45,28 @@ public class File {
         this.id = id;
     }
 
-    public String getFileTitle() {
-        return fileTitle;
+    public String getFileName() {
+        return fileName;
     }
 
-    public void setFileTitle(String fileTitle) {
-        this.fileTitle = fileTitle;
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
-    public String getCategory() {
-        return category;
+    public String getFileType() {
+        return fileType;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
     }
 
     public Folder getFolder() {
