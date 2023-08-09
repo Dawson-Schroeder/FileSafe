@@ -2,6 +2,10 @@ package com.example.filesafe.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.persistence.OneToMany;
+
+
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -23,6 +27,18 @@ public class User {
 
     @Column
     private String profileImage;
+
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
+    private List<Folder> folders;
+
+    public User(long id, String email, String username, String password, String profileImage, List<Folder> folders) {
+        this.id = id;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.profileImage = profileImage;
+        this.folders = folders;
+    }
 
     public User(long id, String email, String username, String password) {
         this.id = id;
@@ -79,5 +95,13 @@ public class User {
 
     public void setProfileImage(String profileImage) {
         this.profileImage = profileImage;
+    }
+
+    public List<Folder> getFolders() {
+        return folders;
+    }
+
+    public void setFolders(List<Folder> folders) {
+        this.folders = folders;
     }
 }
