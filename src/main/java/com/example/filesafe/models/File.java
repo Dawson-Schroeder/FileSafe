@@ -19,7 +19,7 @@ public class File {
 
     @Lob
     @Column(nullable = false)
-    private byte[] data;
+    private byte[] fileData;
 
     @JsonIgnore
     @ManyToOne
@@ -29,11 +29,18 @@ public class File {
     public File() {
     }
 
-    public File(long id, String fileName, String fileType, byte[] data, Folder folder) {
+    public File(long id, String fileName, String fileType, byte[] fileData, Folder folder) {
         this.id = id;
         this.fileName = fileName;
         this.fileType = fileType;
-        this.data = data;
+        this.fileData = fileData;
+        this.folder = folder;
+    }
+
+    public File(String fileName, String fileType, byte[] fileData, Folder folder) {
+        this.fileName = fileName;
+        this.fileType = fileType;
+        this.fileData = fileData;
         this.folder = folder;
     }
 
@@ -61,12 +68,12 @@ public class File {
         this.fileType = fileType;
     }
 
-    public byte[] getData() {
-        return data;
+    public byte[] getFileData() {
+        return fileData;
     }
 
-    public void setData(byte[] data) {
-        this.data = data;
+    public void setFileData(byte[] data) {
+        this.fileData = fileData;
     }
 
     public Folder getFolder() {
