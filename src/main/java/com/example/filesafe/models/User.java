@@ -28,8 +28,9 @@ public class User {
     @Column
     private String profileImage;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Folder> folders;
+
 
     public User(long id, String email, String username, String password, String profileImage, List<Folder> folders) {
         this.id = id;

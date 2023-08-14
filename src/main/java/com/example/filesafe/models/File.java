@@ -72,7 +72,7 @@ public class File {
         return fileData;
     }
 
-    public void setFileData(byte[] data) {
+    public void setFileData(byte[] fileData) {
         this.fileData = fileData;
     }
 

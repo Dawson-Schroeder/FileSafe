@@ -14,16 +14,19 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/api/files")
 public class FileController {
-
-    @Autowired
     private FileService fileService;
 
+    @Autowired
+    public FileController(FileService fileService) {
+        this.fileService = fileService;
+    }
+
     @PostMapping("/upload/file")
-    public ResponseEntity<String> uploadFile(@RequestParam("file")MultipartFile file) throws IOException {
+    public ResponseEntity<String> uploadFile(@RequestParam("file")MultipartFile file, @RequestParam("folderId") Long folderId) throws IOException {
         if (file.isEmpty()) {
             return ResponseEntity.badRequest().body("Please select a file to upload.");
         }
-        fileService.saveFile(file);
+        fileService.saveFile(file, folderId);
         return ResponseEntity.ok("File uploaded successfully.");
     }
 }
