@@ -11,10 +11,10 @@ public class File {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
+    @Column
     private String fileName;
 
-    @Column(nullable = false)
+    @Column
     private String fileType;
 
     @Lob

@@ -5,7 +5,19 @@
 <div class="page-wrapper">
   <nav th:insert="~{partials/navbar :: navbar}"></nav>
   <h1>Profile Page</h1>
-  <p class="row" sec:authorize="isAuthenticated()">Welcome, @<strong th:text="${#authentication.name}"></strong></p>
+  <p class="row" sec:authorize="isAuthenticated()">Welcome,<strong th:text="${#authentication.name}"></strong></p>
+  <form id="upload-form" enctype="multipart/form-data" th:action="@{/files/upload/file}" method="post">
+    <input type="file" name="file" id="document-input">
+    <input type="hidden" name="folderId" th:value="${folderId}">
+    <button type="submit">Upload Document</button>
+  </form>
+  <h1 th:text="${folder.title} + ' Files'"></h1>
+  <ul>
+    <li th:each="file : ${folder.files}">
+      <span th:text="${file.fileName}"></span>
+      <a th:href="@{/files/download/{fileId}(fileId=${file.id})}">Download</a>
+    </li>
+  </ul>
 </div>
 <div th:insert="~{partials/footer :: footer}"></div>
 </body>

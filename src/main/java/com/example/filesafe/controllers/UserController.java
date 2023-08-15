@@ -77,7 +77,7 @@ public class UserController {
         long userId = user.getId();
         user = usersDao.findUserById(userId);
         model.addAttribute("user", user);
-        model.addAttribute("id", userId);
+        model.addAttribute("folderId", userId);
         return "profile";
     }
 

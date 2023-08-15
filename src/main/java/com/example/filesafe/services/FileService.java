@@ -30,8 +30,8 @@ public class FileService {
 
         Folder folder = folderRepository.findById(folderId).orElseThrow(() -> new RuntimeException("Folder not found"));
 
-        File file = new File(fileName, fileType, fileData, folder);
-        fileRepository.save(file);
+        File newFile = new File(fileName, fileType, fileData, folder);
+        fileRepository.save(newFile);
     }
     public Optional<File> getFileById(long fileId){
         return fileRepository.findById(fileId);
