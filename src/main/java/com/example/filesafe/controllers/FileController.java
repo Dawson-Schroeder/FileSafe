@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/files")
@@ -32,13 +33,19 @@ public class FileController {
 
     @GetMapping("/download/{fileId}")
     public ResponseEntity<ByteArrayResource> downloadFile(@PathVariable Long fileId) {
-        File file = fileService.getFileById(fileId);
+        Optional<File> fileOptional = fileService.getFileById(fileId);
 
-        ByteArrayResource resource = new ByteArrayResource(file.getFileData());
+        if (fileOptional.isPresent()) {
+            File file = fileOptional.get();
 
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFileName() + "\"")
-                .body(resource);
+            ByteArrayResource resource = new ByteArrayResource(file.getFileData());
+
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFileName() + "\"")
+                    .body(resource);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }

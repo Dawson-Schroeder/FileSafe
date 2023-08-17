@@ -1,6 +1,7 @@
 package com.example.filesafe.controllers;
 
 import com.example.filesafe.models.Folder;
+import com.example.filesafe.services.FolderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
